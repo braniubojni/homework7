@@ -19,8 +19,7 @@ class Account {
 
 	set name(value){
 		if(value.length < 0){
-			console.log(`Please provide correct name`)
-			return;
+			return `Please provide correct name`;
 		}
 		this._name = value;
 	}
@@ -31,14 +30,15 @@ class Account {
 
 	set balance(val){
 		if(val < 0){
-			console.log(`Balance should greater than 0`)
-			return;
+			return `Balance should greater than 0`;
 		}
 		this._balance = val;
 	}
 
 	credit(amount){
-		if(amount < 0) return `You shouldn't use negative number`
+		if(amount < 0) {
+			return `You shouldn't use negative number`;
+		}
 		return this.balance += +amount
 	}
 
@@ -56,5 +56,44 @@ class Account {
 	}
 }
 
-let kikos = new Account({id:1, name:'Kikos', balance: 5000})
-let giqor = new Account({id:2, name:'Giqor', balance: 1000})
+// let kikos = new Account({id:1, name:'Kikos', balance: 5000})
+// let giqor = new Account({id:2, name:'Giqor', balance: 1000})
+
+class Person {
+	constructor({firstName, lastName, gender, age} = {}){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this._gender = gender;
+		this.age = age;
+	}
+	get gender(){
+		return this._gender
+	}
+	get firstName(){
+		return this._firstName
+	}
+	set firstName(val){
+		if(val.length < 1) return `Your name is too short`
+
+		this._firstName = val;
+	}
+
+	get lastName(){
+		return this._lastName
+	}
+	set lastName(val){
+		if(val.length < 3) return `Your lastname is too short`
+		this._lastName = val;
+	}
+
+	get age(){
+		return this._age
+	}
+	set age(val){
+		if(val < 10) return `Your are too young`
+		this._age = val;
+	}
+}
+
+let john = new Person({firstName:'John', lastName:'Petrosyan', gender: 'male', age: 19})
+console.log(john.age)
