@@ -73,7 +73,7 @@ class Person {
 		return this._firstName
 	}
 	set firstName(val){
-		if(val.length < 1) return `Your name is too short`
+		// if(val.length < 1) return `Your name is too short`
 
 		this._firstName = val;
 	}
@@ -82,7 +82,7 @@ class Person {
 		return this._lastName
 	}
 	set lastName(val){
-		if(val.length < 3) return `Your lastname is too short`
+		// if(val.length < 3) return `Your lastname is too short`
 		this._lastName = val;
 	}
 
@@ -90,10 +90,43 @@ class Person {
 		return this._age
 	}
 	set age(val){
-		if(val < 10) return `Your are too young`
+		// if(val < 10) return `Your are too young`
 		this._age = val;
+	}
+
+	toString(){
+		return JSON.stringify(this)
 	}
 }
 
-let john = new Person({firstName:'John', lastName:'Petrosyan', gender: 'male', age: 19})
-console.log(john.age)
+class Student extends Person {
+	constructor({programms, year, fee, ...args} = {}){
+		super(args);
+		this.programms = programms;
+		this.year = year;
+		this.fee = fee;	
+	}
+	get programms(){
+		return this._programms.length ? this?._programms : undefined;
+	}
+	set programms(value){
+		this._programms = [value]
+	}
+
+}
+
+let john = new Person({firstName:'John', lastName:'Petrosyan', gender: 'male', age: 19,})
+let newStudent = new Student({
+	firstName: "Giqor", 
+	lastName: "Smith", 
+	gender: 'male', 
+	programms: 'Liric',
+	age: 35, 
+	year: 2019,
+	fee: 450000,
+})
+
+console.log(newStudent)
+newStudent.programms.push('History', 'Math')
+newStudent.programms.push('History', 'Math')
+console.log(newStudent)
