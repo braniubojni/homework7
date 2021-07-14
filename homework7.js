@@ -100,33 +100,67 @@ class Person {
 }
 
 class Student extends Person {
+	_allProgramms = []
 	constructor({programms, year, fee, ...args} = {}){
 		super(args);
 		this.programms = programms;
 		this.year = year;
 		this.fee = fee;	
 	}
+	get allProgramms(){
+		return this._allProgramms
+	}
 	get programms(){
 		return this._programms.length ? this?._programms : undefined;
 	}
 	set programms(value){
-		this._programms = [value]
+		// this._programms = [value];
+		this._programms = value;
 	}
-
+	get year(){
+		return this._year;
+	}
+	set year(val){
+		if(val < 2000) return console.log(`You are too old`)
+		this._year = val;
+	}
+	get fee(){
+		return this._fee;
+	}
+	set fee(val){
+		if(val < 0) return console.log(`You can't have negative fee`)
+		this._fee = val;
+	}
+	passExam(program, grade){
+		this.programms.forEach(subject => {
+			if(subject.hasOwnProperty(program)){
+				subject[program] = grade
+			}
+		})
+		if(!this.programms.filter(item => Object.values(item)[0] === 0).length){
+			this._year += 1
+			this._allProgramms.push(...this._programms)
+			this._programms = []
+		}
+	}
+	toString(){
+		return JSON.stringify(this)
+	}
 }
 
 let john = new Person({firstName:'John', lastName:'Petrosyan', gender: 'male', age: 19,})
-let newStudent = new Student({
+
+let giqor = new Student({
 	firstName: "Giqor", 
 	lastName: "Smith", 
 	gender: 'male', 
-	programms: 'Liric',
+	programms: [{'Liric':0},{'History':0}, {'Math':0}],
 	age: 35, 
 	year: 2019,
 	fee: 450000,
 })
 
-console.log(newStudent)
-newStudent.programms.push('History', 'Math')
-newStudent.programms.push('History', 'Math')
-console.log(newStudent)
+giqor.passExam('Liric', 55)
+giqor.passExam('History', 55)
+giqor.passExam('Math', 75)
+console.log(giqor)
