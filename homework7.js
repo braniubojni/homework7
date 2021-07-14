@@ -111,9 +111,12 @@ class Student extends Person {
 		return this._allProgramms
 	}
 	get programms(){
-		return this._programms.length ? this?._programms : undefined;
+		return this._programms
 	}
 	set programms(value){
+		if(!this._programms){
+			this._programms = [value];
+		}
 		// this._programms = [value];
 		this._programms = value;
 	}
@@ -162,5 +165,6 @@ let giqor = new Student({
 
 giqor.passExam('Liric', 55)
 giqor.passExam('History', 55)
-// giqor.passExam('Math', 75) // uncomment me and run the code please!!!
+giqor.passExam('Math', 75) // uncomment me and run the code please!!!
+giqor.programms.push({'biology':0}, {'physical education': 0})
 console.log(giqor)
