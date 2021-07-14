@@ -162,5 +162,5 @@ let giqor = new Student({
 
 giqor.passExam('Liric', 55)
 giqor.passExam('History', 55)
-giqor.passExam('Math', 75)
+// giqor.passExam('Math', 75) // uncomment me and run the code please!!!
 console.log(giqor)
