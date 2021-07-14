@@ -141,9 +141,10 @@ class Student extends Person {
 			}
 		})
 		if(!this.programms.filter(item => Object.values(item)[0] === 0).length){
-			this._year += 1
-			this._allProgramms.push(...this._programms)
-			this._programms = []
+
+			this.year += 1
+			this.allProgramms.push(...this.programms)
+			this.programms = []
 		}
 	}
 	toString(){
@@ -166,5 +167,6 @@ let giqor = new Student({
 giqor.passExam('Liric', 55)
 giqor.passExam('History', 55)
 giqor.passExam('Math', 75) // uncomment me and run the code please!!!
-giqor.programms.push({'biology':0}, {'physical education': 0})
+// giqor.programms.push({'biology':0}, {'physical education': 0})
+
 console.log(giqor)
