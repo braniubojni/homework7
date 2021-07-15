@@ -142,7 +142,7 @@ class Student extends Person {
 		})
 		if(!this.programms.filter(item => Object.values(item)[0] === 0).length){
 			let sum,
-				count=0;
+			    count = 0;
 			sum = this.programms.reduce((reducer,accum)=>{
 						count++;
 						return reducer + Object.values(accum)[0];
